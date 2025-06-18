@@ -1,90 +1,136 @@
-/* Estilos gerais */
-body {
-    background: repeating-linear-gradient(45deg, #0d0d0d, #1a1a1a 10%, #292929 20%, #121212 30%);
-    background-size: 400% 400%;
-    animation: stripeAnimation 8s infinite alternate;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    user-select: none; /* Impede a cópia do texto */
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Animação do fundo */
-@keyframes stripeAnimation {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+body {
+  font-family: Arial, sans-serif;
+  color: #fff;
+  user-select: none;
+  min-height: 100vh;
+  background: linear-gradient(-45deg,
+    #0a0a0a, #1a1a1a, #2a2a2a, #1c1c1c, #111111,
+    #222222, #191919, #2f2f2f, #0f0f0f);
+  background-size: 400% 400%;
+  animation: gradientFlow 18s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 20px 60px;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Cabeçalho */
 header {
-    position: absolute;
-    top: 20px;
-    text-align: center;
-    width: 100%;
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 .logo {
-    width: 150px;
+  width: 100px;
+  height: auto;
+  opacity: 0.95;
 }
 
-/* Nome da marca centralizado */
+/* Conteúdo principal */
+main {
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Marca com degradê fiel */
 .brand-name {
-    font-size: 3em;
-    font-weight: bold;
-    background: linear-gradient(to right, #9929ea, #5808fb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
+  font-size: 2.8em;
+  font-weight: bold;
+  background: linear-gradient(to right, #9929ea, #5808fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Botões organizados verticalmente */
+.description {
+  font-size: 1.1em;
+  opacity: 0.85;
+}
+
+/* Botões sociais com efeito fosco */
 .buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
 }
 
-/* Efeito de brilho animado nos ícones */
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    padding: 12px;
-    margin: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  width: 100%;
+  max-width: 260px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn i {
-    margin-right: 8px;
+.btn img {
+  width: 24px;
+  height: 24px;
 }
 
-/* Cores dos botões */
-.whatsapp { background-color: #25D366; color: #fff; }
-.instagram { background-color: #E1306C; color: #fff; }
-.facebook { background-color: #1877F2; color: #fff; }
+/* Contorno em degradê */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(135deg, #9929ea, #5808fb);
+  mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
 
-/* Efeito de brilho ao passar o mouse */
-.btn:hover, .btn:active {
-    transform: scale(1.15);
-    box-shadow: 0 0 15px #9929ea;
+.btn:hover::after {
+  opacity: 1;
+}
+
+.btn:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 0 18px rgba(153, 41, 234, 0.35);
 }
 
 /* Rodapé */
 footer {
-    position: absolute;
-    bottom: 10px;
-    text-align: center;
-    font-size: 0.9em;
+  margin-top: auto;
+  padding-top: 40px;
+  text-align: center;
+  font-size: 0.85em;
+  opacity: 0.75;
 }
